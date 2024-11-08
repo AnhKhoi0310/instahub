@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "instahub6942ea98"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "instahubUpdateData"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -17,6 +25,12 @@
   },
   "function": {
     "instahub6942ea98": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "instahubUpdateData": {
       "build": true,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -44,6 +58,30 @@
         {
           "category": "function",
           "resourceName": "instahub6942ea98"
+        }
+      ]
+    },
+    "AMPLIFY_function_instahubUpdateData_databasePassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "instahubUpdateData"
+        }
+      ]
+    },
+    "AMPLIFY_function_instahubUpdateData_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "instahubUpdateData"
+        }
+      ]
+    },
+    "AMPLIFY_function_instahubUpdateData_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "instahubUpdateData"
         }
       ]
     },

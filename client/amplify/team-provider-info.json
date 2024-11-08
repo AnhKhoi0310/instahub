@@ -15,7 +15,12 @@
       "function": {
         "instahub6942ea98": {
           "deploymentBucketName": "amplify-instahub-dev-58075-deployment",
-          "s3Key": "amplify-builds/instahub6942ea98-55434b58596a45516f56-build.zip"
+          "s3Key": "amplify-builds/instahub6942ea98-4877502b534b70766f56-build.zip"
+        },
+        "instahubUpdateData": {
+          "databasePassword": "khoi0310",
+          "deploymentBucketName": "amplify-instahub-dev-58075-deployment",
+          "s3Key": "amplify-builds/instahubUpdateData-34715146576368395a61-build.zip"
         }
       },
       "api": {
