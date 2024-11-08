@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-instahub-dev-58075-authRole",
+      "UnauthRoleArn": "arn:aws:iam::586794473524:role/amplify-instahub-dev-58075-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::586794473524:role/amplify-instahub-dev-58075-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-instahub-dev-58075-deployment",
+      "UnauthRoleName": "amplify-instahub-dev-58075-unauthRole",
+      "StackName": "amplify-instahub-dev-58075",
+      "StackId": "arn:aws:cloudformation:us-east-1:586794473524:stack/amplify-instahub-dev-58075/e2a58540-9af8-11ef-a1ff-0e106e7e8ba5",
+      "AmplifyAppId": "d3akbpj79x7o8e"
+    },
+    "categories": {
+      "function": {
+        "instahub6942ea98": {
+          "deploymentBucketName": "amplify-instahub-dev-58075-deployment",
+          "s3Key": "amplify-builds/instahub6942ea98-55434b58596a45516f56-build.zip"
+        }
+      },
+      "api": {
+        "apic1eeecf5": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3akbpj79x7o8e",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}
