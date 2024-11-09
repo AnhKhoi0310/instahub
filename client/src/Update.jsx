@@ -15,6 +15,11 @@ const roomList = ['Office', 'Storage', 'Ball room', 'Study room', 'Lab', 'Class 
 export default function DataField() {
     const { register, handleSubmit, setValue } = useForm();
     const [tableData, setTableData] = useState(null);
+
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
     const handleFormSummit = async (formData) => {
         console.log('form data is:', formData);
         const deviceId = formData.Device ?? "";
@@ -23,10 +28,6 @@ export default function DataField() {
         const location = formData.Location ?? "";
         const building = formData.Building ?? "";
         // console.log(deviceId,roomName, roomType, location, building,top);
-        if (deviceId == "") {
-            console.log("Nothing to update!")
-            return;
-        }
         try {
             const restOperation = post({
                 apiName: 'apic1eeecf5',
@@ -73,6 +74,20 @@ export default function DataField() {
             console.log('GET call failed: ', e);
         }
     }
+
+    const totalPages = tableData ? Math.ceil(tableData.length / itemsPerPage) : 1;
+
+    const currentData = tableData
+        ? tableData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        : [];
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
     return (
         <div className="containter">
             <form onSubmit={handleSubmit(handleFormSummit)} className="form">
@@ -91,7 +106,8 @@ export default function DataField() {
                     Show Devices!
                 </Fab>
             </form >
-            {tableData != null && (
+            {tableData != null  && (
+                <div>
                 <table className="response-table">
                     <thead>
                         <tr>
@@ -101,7 +117,7 @@ export default function DataField() {
                         </tr>
                     </thead>
                     <tbody>
-                        {tableData.map((item, index) => (
+                        {currentData.map((item, index) => (
                             <tr key={index}>
                                 {Object.values(item).map((value, idx) => (
                                     <td key={idx}>{value}</td>
@@ -110,6 +126,16 @@ export default function DataField() {
                         ))}
                     </tbody>
                 </table>
+                <div className="pagination">
+                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <span>Page {currentPage} of {totalPages}</span>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div>
+            </div>
             )}
         </div>
     );

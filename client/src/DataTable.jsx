@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './styles/Old.css'
-// import  './App.css';
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import CheckboxesTags from "./components/common/CheckboxesTags";
@@ -38,6 +37,9 @@ export default function DataField() {
     const { register, handleSubmit, setValue, watch } = useForm();
 
     const [tableData, setTableData] = useState(null);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
     const handleFormSummit = async (formData )=>{
         console.log('form data is:', formData);
@@ -84,6 +86,20 @@ export default function DataField() {
           }
     }
 
+    const totalPages = tableData ? Math.ceil(tableData.length / itemsPerPage) : 1;
+
+    const currentData = tableData
+        ? tableData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        : [];
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
     return (
       <div className="containter  ">
         <form  onSubmit = {handleSubmit(handleFormSummit)}  className="form">
@@ -96,11 +112,12 @@ export default function DataField() {
             <ControlledRadioButtonsGroup setValue={setValue} fieldName="Temperature"/>
             <ControlledRadioButtonsGroup setValue={setValue} fieldName="Humidity"/>
             <ControlledRadioButtonsGroup setValue={setValue} fieldName="Light"/>
-            <Fab type="submit"  variant="extended">
+            <Fab className="fab extended" type="submit"  variant="extended">
                 Navigate
             </Fab>
         </form >
         {tableData != null  && (
+                <div>
                 <table className="response-table">
                     <thead>
                         <tr>
@@ -110,7 +127,7 @@ export default function DataField() {
                         </tr>
                     </thead>
                     <tbody>
-                        {tableData.map((item, index) => (
+                        {currentData.map((item, index) => (
                             <tr key={index}>
                                 {Object.values(item).map((value, idx) => (
                                     <td key={idx}>{value}</td>
@@ -119,6 +136,16 @@ export default function DataField() {
                         ))}
                     </tbody>
                 </table>
+                <div className="pagination">
+                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <span>Page {currentPage} of {totalPages}</span>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div>
+            </div>
             )}
       </div>
     );

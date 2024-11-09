@@ -20,19 +20,19 @@ const MainPage = () => {
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Link 
           to="/Navigate"
-          className="block w-full rounded-full border border-blue-500 px-12 py-3 text-sm font-medium text-black hover:text-white hover:bg-pink-300 focus:outline-none focus:ring sm:w-auto"
+          className="block w-full rounded-full border border-green-500 px-12 py-3 text-sm font-medium text-black hover:text-white hover:bg-pink-300 focus:outline-none focus:ring sm:w-auto"
           href="/Navigate"
-        >
+        > 
           Explore Data
         </Link>
       </div>
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Link 
           to="/Update"
-          className="block w-full rounded-full border border-blue-500 px-12 py-3 text-sm font-medium text-black hover:text-white hover:bg-pink-300 focus:outline-none focus:ring sm:w-auto"
+          className="block w-full rounded-full border border-green-500 px-12 py-3 text-sm font-medium text-black hover:text-white hover:bg-pink-300 focus:outline-none focus:ring sm:w-auto"
           href="/Update"
         >
-          Update Data
+          Update Devices
         </Link>
       </div>
     </div>
